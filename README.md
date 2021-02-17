@@ -1,16 +1,19 @@
-# SleepTime
+Projeto # SleepTime
 
-A new Flutter project.
+Projeto para colocar em prática conceitos aprendidos no curso de Flutter da [Cod3r](https://www.udemy.com/course/curso-flutter/).
 
-## Getting Started
+## O App
+O conceito do App é demonstrar quantidade de ciclos e horas de sono a partir da hora informada pelo usuário.
 
-This project is a starting point for a Flutter application.
+![1](https://user-images.githubusercontent.com/20244570/108010639-1a55f680-6fe4-11eb-9b74-996b53ebdcb4.PNG)
 
-A few resources to get you started if this is your first Flutter project:
+### 1
+Usuário irá informar a hora que deseja acordar ou dormir (Switch altena entre acordar e dormir).
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Há também as indicações que o app mostra entre sono ideal e o péssimo sono...
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+O botão de informações exibirá algumas informaçoes sobre o calculo dos sono e recomendações.
+
+### 2
+Futuramente quero implementar notificações com interações ao selecionar algum ciclo onde poderá receber a notificação que está chegando a hora que deseja dormir/acordar
+
