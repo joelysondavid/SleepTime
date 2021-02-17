@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import './utils/app_colors.dart';
 
 // Widgets
-import 'widgets/sleep_time_initial.dart';
+import 'widgets/sleep_time_form.dart';
 
 void main() => runApp(SleepTime());
 
@@ -29,7 +29,7 @@ class SleepTimeHomeState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.background_color,
+        backgroundColor: AppColors.BACKGROUND_COLOR,
         title: Text("SleepTime"),
         actions: <Widget>[
           Container(
@@ -39,17 +39,17 @@ class SleepTimeHomeState extends State {
             child: FloatingActionButton(
               child: Text(
                 "?",
-                style: TextStyle(fontSize: 26, color: AppColors.primary_color),
+                style: TextStyle(fontSize: 26, color: AppColors.PRIMARY_COLOR),
               ),
               tooltip: "Informações",
               onPressed: null,
-              backgroundColor: AppColors.background_card_color,
+              backgroundColor: AppColors.BACKGROUND_CARD_COLOR,
             ),
           ),
         ],
       ),
-      body: SleepTimeInitial(),
-      backgroundColor: AppColors.background_color,
+      body: SleepTimeForm(),
+      backgroundColor: AppColors.BACKGROUND_COLOR,
     );
   }
 }
