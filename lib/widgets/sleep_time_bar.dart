@@ -6,9 +6,33 @@ import "../utils/app_colors.dart";
 // mask
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class SleepTimeBar extends StatelessWidget {
+class SleepTimeBar extends StatefulWidget {
+  @override
+  _SleepTimeBarState createState() => _SleepTimeBarState();
+}
+
+class _SleepTimeBarState extends State<SleepTimeBar> {
   final maskHours =
       MaskTextInputFormatter(mask: "##:##", filter: {"#": RegExp((r"[0-9]"))});
+
+  bool _isWakeup = false;
+  TimeOfDay _selectedHours;
+
+  void sleepWakeup() {
+    setState(() {
+      _isWakeup = !_isWakeup;
+    });
+  }
+
+  void _openHours(ctx) {
+    showTimePicker(context: ctx, initialTime: TimeOfDay.now())
+        .then((hours) {
+      setState(() {
+        _selectedHours = hours;
+        print(_selectedHours);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,19 +143,22 @@ class SleepTimeBar extends StatelessWidget {
             ),
           ),
           Container(
+            width: 260,
             margin: EdgeInsets.all(5),
             child: Column(
               children: <Widget>[
                 Row(
                   children: [
-                    Text(
-                      "Que horas deseja acordar?",
-                      style: TextStyle(
-                          color: AppColors.SECOND_COLOR,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                    Container(
+                      width: 250,
+                      child: Text(
+                        "Que horas deseja ${_isWakeup ? "Acordar" : "Dormir"}?",
+                        style: TextStyle(
+                            color: AppColors.SECOND_COLOR,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    Container()
                   ],
                 ),
                 Row(
@@ -142,32 +169,25 @@ class SleepTimeBar extends StatelessWidget {
                       margin:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                       child: Center(
-                        child: TextField(
-                          inputFormatters: [maskHours],
-                          textAlign: TextAlign.center,
-                          textAlignVertical: TextAlignVertical.bottom,
-                          decoration: InputDecoration(
-                              fillColor: AppColors.BACKGROUND_CARD_COLOR,
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide(color: Colors.red),
-                              ),
-                              hintText: "00:00",
-                              hintStyle:
-                                  TextStyle(color: AppColors.SECOND_COLOR)),
-                          style: TextStyle(
-                            fontSize: 28,
-                            color: AppColors.SECOND_COLOR,
-                            decorationColor: AppColors.SECOND_COLOR,
+                        child: RaisedButton(
+                          onPressed: () => _openHours(context),
+                          child: Text(
+                            _selectedHours != null
+                                ? _selectedHours.format(context)
+                                : "00:00",
+                            style: TextStyle(
+                                color: AppColors.SECOND_COLOR,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
+                          color: AppColors.BACKGROUND_CARD_COLOR,
                         ),
                       ),
                     ),
                     Center(
                       child: Switch(
-                        onChanged: (_) => {},
-                        value: true,
+                        onChanged: (_) => {sleepWakeup()},
+                        value: _isWakeup,
                         activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
                         activeColor: Colors.green,
                       ),
