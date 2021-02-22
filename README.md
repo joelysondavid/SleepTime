@@ -1,6 +1,6 @@
 Projeto # SleepTime
 
-Projeto para colocar em prática conceitos aprendidos no curso de Flutter da [Cod3r](https://www.udemy.com/course/curso-flutter/).
+Projeto para colocar em prática conceitos aprendidos sobre flutter até o momento
 
 ## O App
 O conceito do App é demonstrar quantidade de ciclos e horas de sono a partir da hora informada pelo usuário.
