@@ -1,11 +1,21 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 
+import './sleep_time_card.dart';
 // utils
 import "../utils/app_colors.dart";
+
+// models
+import '../models/cycle.dart';
 
 class SleepTimeList extends StatefulWidget {
   @override
   _SleepTimeListState createState() => _SleepTimeListState();
+
+  final List<Cycle> sleepCycles;
+  bool isWakeup;
+  SleepTimeList({this.sleepCycles, this.isWakeup});
 }
 
 class _SleepTimeListState extends State<SleepTimeList> {
@@ -20,66 +30,41 @@ class _SleepTimeListState extends State<SleepTimeList> {
         boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 1)],
         color: AppColors.SECOND_COLOR,
       ),
-      child: Column(
-        children: <Widget>[
-          Card(
-            color: AppColors.BACKGROUND_CARD_COLOR,
-            child: Container(
-              width: double.infinity,
-              height: 100,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: 60,
-                    height: 30,
-                    child: CircleAvatar(
-                      backgroundColor: AppColors.BACKGROUND_IDEAL_COLOR,
+      child: Container(
+        child: widget.sleepCycles.isEmpty
+            ? Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text(
+                      "Não há ciclos selecionados!",
+                      style: TextStyle(
+                        color: AppColors.BACKGROUND_CARD_COLOR,
+                        fontSize: 24,
+                      ),
                     ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: Text(
-                              "Hr. Dormir",
-                              style: TextStyle(
-                                  color: AppColors.SECOND_COLOR,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: Text(
-                              "Ciclos",
-                              style: TextStyle(
-                                  color: AppColors.SECOND_COLOR,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(10),
-                            child: Text(
-                              "Horas de Sono",
-                              style: TextStyle(
-                                  color: AppColors.SECOND_COLOR,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
+                    Container(
+                      margin: EdgeInsets.all(30),
+                      height: 150,
+                      child: Image.asset(
+                        "assets/images/waiting.png",
+                        fit: BoxFit.cover,
+                        color: AppColors.BACKGROUND_CARD_COLOR,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : ListView.builder(
+                itemCount: widget.sleepCycles.length,
+                itemBuilder: (ctx, index) {
+                  final cycle = widget.sleepCycles[index];
+                  return SleepTimeCard(
+                    sleepCycle: cycle,
+                    isWakeup: widget.isWakeup,
+                  );
+                },
               ),
-            ),
-          )
-        ],
       ),
     );
   }
