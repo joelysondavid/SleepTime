@@ -16,6 +16,7 @@ class SleepTimeForm extends StatefulWidget {
 class _SleepTimeFormState extends State<SleepTimeForm> {
   List<Cycle> cycles = [];
   bool _isWakeup = true;
+  TimeOfDay hours;
 
   void _calculate(TimeOfDay hours) {
     setState(() {
@@ -27,6 +28,7 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
             cycles: cycle,
             sleepHours: calculateSleep(cycle),
             sleepTime: calculateHours(hours, cycle)));
+        this.hours = hours;
       });
     }
   }
@@ -34,6 +36,7 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
   void sleepWakeup() {
     setState(() {
       _isWakeup = !_isWakeup;
+      if (this.hours != null) _calculate(this.hours);
     });
   }
 
@@ -41,8 +44,8 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
     if (_isWakeup) {
       TimeOfDay sleepCalculated = calculateSleep(cycle);
       int hour = (hours.hour - sleepCalculated.hour);
-      hour = hour < 0 ? hour + 25 : hour;
-      //hour = sleepCalculated.minute == 30 ? hour - 1 : hour;
+      hour = hour < 0 ? hour + 24 : hour;
+      hour = sleepCalculated.minute == 30 ? hour - 1 : hour;
 
       int minute = sleepCalculated.minute == 30
           ? (hours.minute + 30)
@@ -54,15 +57,14 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
     } else {
       TimeOfDay sleepCalculated = calculateSleep(cycle);
       int hour = (hours.hour + sleepCalculated.hour);
-      hour = hour >= 25 ? hour - 24 : hour;
+      hour = hour >= 24 ? 24 - hour : hour;
       hour = sleepCalculated.minute == 30 ? hour + 1 : hour;
 
       int minute = sleepCalculated.minute == 30
           ? hours.minute - 30
           : (sleepCalculated.minute - hours.minute).abs();
 
-      minute = minute < 0 ? ((hours.minute + 30) % 60):minute;
-
+      minute = minute < 0 ? ((hours.minute + 30) % 60) : minute;
 
       return TimeOfDay(hour: hour, minute: minute);
     }
