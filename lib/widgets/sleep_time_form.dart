@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './sleep_time_bar.dart';
-import "./SleepTimeList.dart";
+import "./sleep_time_list.dart";
 import "../models/cycle.dart";
 
 class SleepTimeForm extends StatefulWidget {
@@ -36,7 +36,8 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
   void sleepWakeup() {
     setState(() {
       _isWakeup = !_isWakeup;
-      if (this.hours != null) _calculate(this.hours);
+      _calculate(this.hours);
+      this.hours = null;
     });
   }
 
@@ -51,7 +52,7 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
           ? (hours.minute + 30)
           : (sleepCalculated.minute - hours.minute).abs();
 
-      minute = minute > 60 ? ((hours.minute + 30) % 60) : minute;
+      minute = minute > 60 ? (60 - minute) : minute;
 
       return TimeOfDay(hour: hour, minute: minute);
     } else {
@@ -82,7 +83,7 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
       margin: EdgeInsets.all(4),
       child: Column(
         children: <Widget>[
-          SleepTimeBar(_calculate, sleepWakeup, _isWakeup),
+          SleepTimeBar(_calculate, sleepWakeup, _isWakeup, hours),
           Flexible(
             child: SleepTimeList(
               sleepCycles: cycles,

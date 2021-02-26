@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Utils
 import './utils/app_colors.dart';
@@ -27,6 +28,9 @@ class SleepTimeHome extends StatefulWidget {
 class SleepTimeHomeState extends State {
   @override
   Widget build(BuildContext context) {
+    // seta as orientações que o app irá suportar
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.BACKGROUND_COLOR,

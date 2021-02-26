@@ -13,21 +13,21 @@ class SleepTimeBar extends StatefulWidget {
   final Function(TimeOfDay) _calculate;
   void Function() _sleepWakeup;
   bool isWakeup;
+  TimeOfDay _selectedHours;
 
-  SleepTimeBar(this._calculate, this._sleepWakeup, this.isWakeup);
+  SleepTimeBar(
+      this._calculate, this._sleepWakeup, this.isWakeup, _selectedHours);
 }
 
 class _SleepTimeBarState extends State<SleepTimeBar> {
   final maskHours =
       MaskTextInputFormatter(mask: "##:##", filter: {"#": RegExp((r"[0-9]"))});
 
-  TimeOfDay _selectedHours;
-
   void _openHours(ctx) {
     showTimePicker(context: ctx, initialTime: TimeOfDay.now()).then((hours) {
       setState(() {
-        _selectedHours = hours;
-        print(_selectedHours);
+        widget._selectedHours = hours;
+        print(widget._selectedHours);
       });
     });
   }
@@ -170,8 +170,8 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                         child: RaisedButton(
                           onPressed: () => _openHours(context),
                           child: Text(
-                            _selectedHours != null
-                                ? _selectedHours.format(context)
+                            widget._selectedHours != null
+                                ? widget._selectedHours.format(context)
                                 : "00:00",
                             style: TextStyle(
                               color: AppColors.SECOND_COLOR,
@@ -184,7 +184,9 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                     ),
                     Center(
                       child: Switch(
-                        onChanged: (_) => {widget._sleepWakeup()},
+                        onChanged: widget._selectedHours == null
+                            ? null
+                            : (_) => {widget._sleepWakeup()},
                         value: widget.isWakeup,
                         activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
                         activeColor: Colors.green,
@@ -193,9 +195,10 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                     ButtonBar(
                       children: [
                         RaisedButton(
-                          onPressed: _selectedHours == null
+                          onPressed: widget._selectedHours == null
                               ? null
-                              : () => {widget._calculate(_selectedHours)},
+                              : () =>
+                                  {widget._calculate(widget._selectedHours)},
                           child: Text("OK"),
                           color: AppColors.SWITCH_COLOR,
                         )

@@ -1,10 +1,8 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 
-import './sleep_time_card.dart';
+import 'sleep_time_card.dart';
 // utils
-import "../utils/app_colors.dart";
+import '../utils/app_colors.dart';
 
 // models
 import '../models/cycle.dart';
@@ -14,7 +12,7 @@ class SleepTimeList extends StatefulWidget {
   _SleepTimeListState createState() => _SleepTimeListState();
 
   final List<Cycle> sleepCycles;
-  bool isWakeup;
+  final bool isWakeup;
   SleepTimeList({this.sleepCycles, this.isWakeup});
 }
 
