@@ -183,9 +183,10 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                     ),
                     Center(
                       child: Switch(
-                        onChanged: _selectedHours == null
-                            ? null
-                            : (_) => {widget._sleepWakeup()},
+                        onChanged: (_) {
+                          widget._sleepWakeup();
+                          widget._calculate(_selectedHours);
+                        },
                         value: widget.isWakeup,
                         activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
                         activeColor: Colors.green,

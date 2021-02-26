@@ -21,13 +21,15 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
     setState(() {
       cycles = [];
     });
-    for (int cycle = 6; cycle > 0; cycle--) {
-      setState(() {
-        cycles.add(Cycle(
-            cycles: cycle,
-            sleepHours: calculateSleep(cycle),
-            sleepTime: calculateHours(hours, cycle)));
-      });
+    if (hours != null) {
+      for (int cycle = 6; cycle > 0; cycle--) {
+        setState(() {
+          cycles.add(Cycle(
+              cycles: cycle,
+              sleepHours: calculateSleep(cycle),
+              sleepTime: calculateHours(hours, cycle)));
+        });
+      }
     }
   }
 
