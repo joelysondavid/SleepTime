@@ -49,7 +49,7 @@ class SleepTimeCard extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
                       width: 100,
                       child: Column(
                         children: <Widget>[
@@ -71,7 +71,7 @@ class SleepTimeCard extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
                       child: Column(
                         children: <Widget>[
                           Text(
@@ -90,11 +90,11 @@ class SleepTimeCard extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "Horas de Sono",
+                            "Hrs. de Sono",
                             style: TextStyle(
                                 color: AppColors.SECOND_COLOR,
                                 fontSize: 18,

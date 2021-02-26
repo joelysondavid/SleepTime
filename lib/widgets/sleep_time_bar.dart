@@ -13,21 +13,20 @@ class SleepTimeBar extends StatefulWidget {
   final Function(TimeOfDay) _calculate;
   void Function() _sleepWakeup;
   bool isWakeup;
-  TimeOfDay _selectedHours;
 
-  SleepTimeBar(
-      this._calculate, this._sleepWakeup, this.isWakeup, _selectedHours);
+  SleepTimeBar(this._calculate, this._sleepWakeup, this.isWakeup);
 }
 
 class _SleepTimeBarState extends State<SleepTimeBar> {
+  TimeOfDay _selectedHours;
   final maskHours =
       MaskTextInputFormatter(mask: "##:##", filter: {"#": RegExp((r"[0-9]"))});
 
   void _openHours(ctx) {
     showTimePicker(context: ctx, initialTime: TimeOfDay.now()).then((hours) {
       setState(() {
-        widget._selectedHours = hours;
-        print(widget._selectedHours);
+        _selectedHours = hours;
+        print(_selectedHours);
       });
     });
   }
@@ -170,8 +169,8 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                         child: RaisedButton(
                           onPressed: () => _openHours(context),
                           child: Text(
-                            widget._selectedHours != null
-                                ? widget._selectedHours.format(context)
+                            _selectedHours != null
+                                ? _selectedHours.format(context)
                                 : "00:00",
                             style: TextStyle(
                               color: AppColors.SECOND_COLOR,
@@ -184,7 +183,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                     ),
                     Center(
                       child: Switch(
-                        onChanged: widget._selectedHours == null
+                        onChanged: _selectedHours == null
                             ? null
                             : (_) => {widget._sleepWakeup()},
                         value: widget.isWakeup,
@@ -195,10 +194,9 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                     ButtonBar(
                       children: [
                         RaisedButton(
-                          onPressed: widget._selectedHours == null
+                          onPressed: _selectedHours == null
                               ? null
-                              : () =>
-                                  {widget._calculate(widget._selectedHours)},
+                              : () => {widget._calculate(_selectedHours)},
                           child: Text("OK"),
                           color: AppColors.SWITCH_COLOR,
                         )
