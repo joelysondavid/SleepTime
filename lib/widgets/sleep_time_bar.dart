@@ -161,7 +161,6 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                 Row(
                   children: <Widget>[
                     Container(
-                      width: 100,
                       height: 40,
                       margin:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 10),

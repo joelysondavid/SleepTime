@@ -29,92 +29,95 @@ class SleepTimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.BACKGROUND_CARD_COLOR,
-      child: Container(
-        width: double.infinity,
-        height: 100,
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 60,
-              height: 30,
-              child: CircleAvatar(
-                backgroundColor: setColor(sleepCycle.cycles),
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return Card(
+        color: AppColors.BACKGROUND_CARD_COLOR,
+        child: Container(
+          width: double.infinity,
+          height: 100,
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: constraints.maxWidth * 0.15,
+                height: 30,
+                child: CircleAvatar(
+                  backgroundColor: setColor(sleepCycle.cycles),
+                ),
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      width: 100,
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            isWakeup ? "Hr. Dormir" : "Hr. Acordar",
-                            style: TextStyle(
-                                color: AppColors.SECOND_COLOR,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            sleepCycle.sleepTime.format(context),
-                            style: TextStyle(
-                              color: AppColors.SECOND_COLOR,
-                              fontSize: 24,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        width: constraints.maxWidth * 0.2,
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              isWakeup ? "Dormir" : "Acordar",
+                              style: TextStyle(
+                                  color: AppColors.SECOND_COLOR,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Ciclos",
-                            style: TextStyle(
+                            Text(
+                              sleepCycle.sleepTime.format(context),
+                              style: TextStyle(
                                 color: AppColors.SECOND_COLOR,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "${sleepCycle.cycles}",
-                            style: TextStyle(
-                                color: AppColors.SECOND_COLOR, fontSize: 24),
-                          ),
-                        ],
+                                fontSize: 24,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            "Hrs. de Sono",
-                            style: TextStyle(
-                                color: AppColors.SECOND_COLOR,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            sleepCycle.sleepHours.format(context),
-                            style: TextStyle(
-                                color: AppColors.SECOND_COLOR, fontSize: 24),
-                          ),
-                        ],
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        width: constraints.maxWidth * 0.2,
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Ciclos",
+                              style: TextStyle(
+                                  color: AppColors.SECOND_COLOR,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "${sleepCycle.cycles}",
+                              style: TextStyle(
+                                  color: AppColors.SECOND_COLOR, fontSize: 24),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ],
+                      Container(
+                        margin: EdgeInsets.all(5),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "Hrs. de Sono",
+                              style: TextStyle(
+                                  color: AppColors.SECOND_COLOR,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              sleepCycle.sleepHours.format(context),
+                              style: TextStyle(
+                                  color: AppColors.SECOND_COLOR, fontSize: 24),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
