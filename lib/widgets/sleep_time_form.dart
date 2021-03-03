@@ -26,7 +26,8 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
         setState(() {
           cycles.add(Cycle(
               cycles: cycle,
-              sleepHours: calculateSleep(cycle),
+              sleepHours:
+                  "${calculateSleep(cycle).hour}:${calculateSleep(cycle).minute}",
               sleepTime: calculateHours(hours, cycle)));
         });
       }
@@ -43,7 +44,6 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
     if (_isWakeup) {
       TimeOfDay sleepCalculated = calculateSleep(cycle);
       int hour = (hours.hour - sleepCalculated.hour);
-      hour = sleepCalculated.minute == 30 ? hour - 1 : hour;
       hour = hour < 0 ? hour + 24 : hour;
 
       int minute = sleepCalculated.minute == 30
@@ -52,6 +52,9 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
 
       minute = minute > 60 ? (minute - 60).abs() : minute;
 
+      double hours2 = cycle * 90.0;
+      hours2 = hours2 / 60;
+      int isOdd = hours2.toString().indexOf(".5");
       return TimeOfDay(hour: hour, minute: minute);
     } else {
       TimeOfDay sleepCalculated = calculateSleep(cycle);
@@ -63,6 +66,10 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
           : (sleepCalculated.minute - hours.minute).abs();
 
       minute = minute < 0 ? ((hours.minute + 30) % 60) : minute;
+
+      hour = sleepCalculated.minute == 30 && hours.minute > minute
+          ? hour + 1
+          : hour;
 
       return TimeOfDay(hour: hour, minute: minute);
     }

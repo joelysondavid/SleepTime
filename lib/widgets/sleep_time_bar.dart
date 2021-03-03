@@ -33,182 +33,194 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 30,
-            height: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 1)],
-              color: AppColors.SECOND_COLOR,
+    final mediaQuery = MediaQuery.of(context);
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return Container(
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 30,
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [BoxShadow(color: Colors.black, spreadRadius: 1)],
+                color: AppColors.SECOND_COLOR,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: constraints.maxWidth * 0.15,
+                    height: 25,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.green,
+                    ),
+                    padding: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: Colors.black, // border color
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Container(
+                    width: constraints.maxWidth * 0.15,
+                    height: 25,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.yellow,
+                    ),
+                    padding: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: Colors.black, // border color
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Container(
+                    width: constraints.maxWidth * 0.15,
+                    height: 25,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.orange,
+                    ),
+                    padding: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: Colors.black, // border color
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Container(
+                    width: constraints.maxWidth * 0.15,
+                    height: 25,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.red,
+                    ),
+                    padding: EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: Colors.black, // border color
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black, spreadRadius: 1)
-                    ],
-                    color: Colors.green,
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black, spreadRadius: 1)
-                    ],
-                    color: Colors.yellow,
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black, spreadRadius: 1)
-                    ],
-                    color: Colors.orange,
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black, spreadRadius: 1)
-                    ],
-                    color: Colors.red,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 110,
-            width: 70,
-            margin: EdgeInsets.all(4),
-            alignment: Alignment.centerLeft,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Text(
-                    "Ideal",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: AppColors.SECOND_COLOR),
-                  )
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Text("Regular",
+            Container(
+              height: 110,
+              width: constraints.maxWidth * 0.2,
+              margin: EdgeInsets.all(1),
+              alignment: Alignment.centerLeft,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Text(
+                      "Ideal",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: AppColors.SECOND_COLOR))
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Text(
-                    "Ruim",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: AppColors.SECOND_COLOR),
-                  )
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Text(
-                    "Péssimo",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: AppColors.SECOND_COLOR),
-                  )
-                ])
-              ],
-            ),
-          ),
-          Container(
-            width: 260,
-            margin: EdgeInsets.all(5),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: [
-                    Container(
-                      width: 250,
-                      child: Text(
-                        "Que horas deseja ${widget.isWakeup ? "Acordar" : "Dormir"}?",
+                          color: AppColors.SECOND_COLOR),
+                    )
+                  ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Text("Regular",
                         style: TextStyle(
-                            color: AppColors.SECOND_COLOR,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      height: 40,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                      child: Center(
-                        child: RaisedButton(
-                          onPressed: () => _openHours(context),
-                          child: Text(
-                            _selectedHours != null
-                                ? _selectedHours.format(context)
-                                : "00:00",
-                            style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: AppColors.SECOND_COLOR))
+                  ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Text(
+                      "Ruim",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: AppColors.SECOND_COLOR),
+                    )
+                  ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Text(
+                      "Péssimo",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          color: AppColors.SECOND_COLOR),
+                    )
+                  ])
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(5),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Container(
+                        width: 250,
+                        child: Text(
+                          "Que horas deseja ${widget.isWakeup ? "Acordar" : "Dormir"}?",
+                          style: TextStyle(
                               color: AppColors.SECOND_COLOR,
-                              fontSize: 22,
-                            ),
-                          ),
-                          color: AppColors.BACKGROUND_CARD_COLOR,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Switch(
-                        onChanged: (_) {
-                          widget._sleepWakeup();
-                          widget._calculate(_selectedHours);
-                        },
-                        value: widget.isWakeup,
-                        activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
-                        activeColor: Colors.green,
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        height: 40,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                        child: Center(
+                          child: TextButton(
+                            onPressed: () => _openHours(context),
+                            style: TextButton.styleFrom(
+                                backgroundColor: AppColors.BACKGROUND_CARD_COLOR),
+                            child: Text(
+                              _selectedHours != null
+                                  ? _selectedHours.format(context)
+                                  : "00:00",
+                              style: TextStyle(
+                                color: AppColors.SECOND_COLOR,
+                                fontSize: 22,
+                              ),
+                            ),
+                            //color: AppColors.BACKGROUND_CARD_COLOR,
+                          ),
+                        ),
                       ),
-                    ),
-                    ButtonBar(
-                      children: [
-                        RaisedButton(
-                          onPressed: _selectedHours == null
-                              ? null
-                              : () => {widget._calculate(_selectedHours)},
-                          child: Text("OK"),
-                          color: AppColors.SWITCH_COLOR,
-                        )
-                      ],
-                    )
-                  ],
-                )
-              ],
+                      Center(
+                        child: Switch(
+                          onChanged: (_) {
+                            widget._sleepWakeup();
+                            widget._calculate(_selectedHours);
+                          },
+                          value: widget.isWakeup,
+                          activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
+                          activeColor: Colors.green,
+                        ),
+                      ),
+                      ButtonBar(
+                        children: [
+                          TextButton(
+                            onPressed: _selectedHours == null
+                                ? null
+                                : () => {widget._calculate(_selectedHours)},
+                            child: Text(
+                              "OK",
+                              style: TextStyle(color: AppColors.PRIMARY_COLOR),
+                            ),
+                            style: TextButton.styleFrom(
+                                backgroundColor: AppColors.SWITCH_COLOR),
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 }

@@ -35,7 +35,7 @@ class SleepTimeHomeState extends State {
       appBar: AppBar(
         backgroundColor: AppColors.BACKGROUND_COLOR,
         title: Text("SleepTime"),
-        actions: <Widget>[
+        /*actions: <Widget>[
           Container(
             margin: EdgeInsets.all(5),
             width: 40,
@@ -50,7 +50,7 @@ class SleepTimeHomeState extends State {
               backgroundColor: AppColors.BACKGROUND_CARD_COLOR,
             ),
           ),
-        ],
+        ],*/
       ),
       body: SleepTimeForm(),
       backgroundColor: AppColors.BACKGROUND_COLOR,

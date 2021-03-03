@@ -38,7 +38,7 @@ class SleepTimeCard extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                width: constraints.maxWidth * 0.15,
+                width: constraints.maxWidth * 0.1,
                 height: 30,
                 child: CircleAvatar(
                   backgroundColor: setColor(sleepCycle.cycles),
@@ -51,7 +51,7 @@ class SleepTimeCard extends StatelessWidget {
                     children: [
                       Container(
                         margin: EdgeInsets.all(5),
-                        width: constraints.maxWidth * 0.2,
+                        width: constraints.maxWidth * 0.3,
                         child: Column(
                           children: <Widget>[
                             Text(
@@ -93,6 +93,7 @@ class SleepTimeCard extends StatelessWidget {
                       ),
                       Container(
                         margin: EdgeInsets.all(5),
+                        width: constraints.maxWidth * 0.3,
                         child: Column(
                           children: <Widget>[
                             Text(
@@ -103,7 +104,7 @@ class SleepTimeCard extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              sleepCycle.sleepHours.format(context),
+                              sleepCycle.sleepHours,
                               style: TextStyle(
                                   color: AppColors.SECOND_COLOR, fontSize: 24),
                             ),

@@ -4,7 +4,7 @@ class Cycle {
   // Properties
   TimeOfDay sleepTime;
   int cycles;
-  TimeOfDay sleepHours;
+  String sleepHours;
 
   // Constructors
   Cycle({this.sleepTime, this.cycles, this.sleepHours});
