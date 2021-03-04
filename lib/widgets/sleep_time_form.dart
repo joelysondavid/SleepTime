@@ -49,12 +49,9 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
       int minute = sleepCalculated.minute == 30
           ? (hours.minute + 30)
           : (sleepCalculated.minute - hours.minute).abs();
-
       minute = minute > 60 ? (minute - 60).abs() : minute;
 
-      double hours2 = cycle * 90.0;
-      hours2 = hours2 / 60;
-      int isOdd = hours2.toString().indexOf(".5");
+
       return TimeOfDay(hour: hour, minute: minute);
     } else {
       TimeOfDay sleepCalculated = calculateSleep(cycle);
