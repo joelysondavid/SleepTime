@@ -49,8 +49,11 @@ class _SleepTimeFormState extends State<SleepTimeForm> {
       int minute = sleepCalculated.minute == 30
           ? (hours.minute + 30)
           : (sleepCalculated.minute - hours.minute).abs();
-      minute = minute > 60 ? (minute - 60).abs() : minute;
-
+      minute = minute >= 60 ? (minute - 60).abs() : minute;
+      hour =
+          (minute > hours.minute) & (hour + sleepCalculated.hour == hours.hour)
+              ? hour - 1
+              : hour;
 
       return TimeOfDay(hour: hour, minute: minute);
     } else {

@@ -33,7 +33,6 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     return LayoutBuilder(builder: (ctx, constraints) {
       return Container(
         child: Row(
