@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './sleep_time_bar.dart';
-import "./sleep_time_list.dart";
-import "../models/cycle.dart";
+import '../widgets/sleep_time_bar.dart';
+import '../widgets/sleep_time_list.dart';
+import '../models/cycle.dart';
 
 class SleepTimeForm extends StatefulWidget {
   final TimeOfDay timeOfDay;
