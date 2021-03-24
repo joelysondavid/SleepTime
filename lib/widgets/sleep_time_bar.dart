@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //utils
@@ -35,6 +36,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
       return Container(
+        margin: EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
             Container(
@@ -172,7 +174,8 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                           child: TextButton(
                             onPressed: () => _openHours(context),
                             style: TextButton.styleFrom(
-                                backgroundColor: AppColors.BACKGROUND_CARD_COLOR),
+                                backgroundColor:
+                                    AppColors.BACKGROUND_CARD_COLOR),
                             child: Text(
                               _selectedHours != null
                                   ? _selectedHours.format(context)
@@ -187,14 +190,17 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                         ),
                       ),
                       Center(
-                        child: Switch(
-                          onChanged: (_) {
-                            widget._sleepWakeup();
-                            widget._calculate(_selectedHours);
-                          },
-                          value: widget.isWakeup,
-                          activeTrackColor: AppColors.BACKGROUND_CARD_COLOR,
-                          activeColor: Colors.green,
+                        child: Transform.scale(
+                          scale: 0.8,
+                          child: CupertinoSwitch(
+                            onChanged: (_) {
+                              widget._sleepWakeup();
+                              widget._calculate(_selectedHours);
+                            },
+                            value: widget.isWakeup,
+                            activeColor: AppColors.BACKGROUND_CARD_COLOR,
+                            trackColor: AppColors.SWITCH_COLOR,
+                          ),
                         ),
                       ),
                       ButtonBar(
