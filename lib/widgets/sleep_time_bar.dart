@@ -36,7 +36,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
       return Container(
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(5),
         child: Row(
           children: <Widget>[
             Container(
@@ -104,7 +104,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
             Container(
               height: 110,
               width: constraints.maxWidth * 0.2,
-              margin: EdgeInsets.all(1),
+              margin: EdgeInsets.all(5),
               alignment: Alignment.centerLeft,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
