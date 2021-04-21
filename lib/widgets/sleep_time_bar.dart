@@ -153,7 +153,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                   Row(
                     children: [
                       Container(
-                        width: constraints.maxWidth * 0.55,
+                        width: constraints.maxWidth * 0.6,
                         child: Text(
                           "Que horas deseja ${widget.isWakeup ? "Acordar" : "Dormir"}?",
                           style: TextStyle(
