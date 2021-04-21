@@ -17,11 +17,13 @@ class SleepTimeList extends StatefulWidget {
 }
 
 class _SleepTimeListState extends State<SleepTimeList> {
+  final componentHeight = double.infinity;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-      height: double.infinity,
+      height: componentHeight,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -43,7 +45,7 @@ class _SleepTimeListState extends State<SleepTimeList> {
                     ),
                     Container(
                       margin: EdgeInsets.all(30),
-                      height: 150,
+                      height: 70,
                       child: Image.asset(
                         "assets/images/waiting.png",
                         fit: BoxFit.cover,

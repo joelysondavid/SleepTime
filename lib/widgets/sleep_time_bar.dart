@@ -12,8 +12,8 @@ class SleepTimeBar extends StatefulWidget {
   _SleepTimeBarState createState() => _SleepTimeBarState();
 
   final Function(TimeOfDay) _calculate;
-  void Function() _sleepWakeup;
-  bool isWakeup;
+  final void Function() _sleepWakeup;
+  final bool isWakeup;
 
   SleepTimeBar(this._calculate, this._sleepWakeup, this.isWakeup);
 }
@@ -40,7 +40,7 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
         child: Row(
           children: <Widget>[
             Container(
-              width: 30,
+              width: constraints.maxWidth * 0.075,
               height: 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
