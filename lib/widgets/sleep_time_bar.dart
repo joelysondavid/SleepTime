@@ -153,13 +153,13 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                   Row(
                     children: [
                       Container(
-                        width: 250,
+                        width: constraints.maxWidth * 0.55,
                         child: Text(
                           "Que horas deseja ${widget.isWakeup ? "Acordar" : "Dormir"}?",
                           style: TextStyle(
                               color: AppColors.SECOND_COLOR,
                               fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -203,20 +203,16 @@ class _SleepTimeBarState extends State<SleepTimeBar> {
                           ),
                         ),
                       ),
-                      ButtonBar(
-                        children: [
-                          TextButton(
-                            onPressed: _selectedHours == null
-                                ? null
-                                : () => {widget._calculate(_selectedHours)},
-                            child: Text(
-                              "OK",
-                              style: TextStyle(color: AppColors.PRIMARY_COLOR),
-                            ),
-                            style: TextButton.styleFrom(
-                                backgroundColor: AppColors.SWITCH_COLOR),
-                          )
-                        ],
+                      TextButton(
+                        onPressed: _selectedHours == null
+                            ? null
+                            : () => {widget._calculate(_selectedHours)},
+                        child: Text(
+                          "OK",
+                          style: TextStyle(color: AppColors.PRIMARY_COLOR),
+                        ),
+                        style: TextButton.styleFrom(
+                            backgroundColor: AppColors.SWITCH_COLOR),
                       )
                     ],
                   )
