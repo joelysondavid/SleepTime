@@ -1,4 +1,3 @@
-import 'package:SleepTime/main.dart';
 import 'package:flutter/material.dart';
 
 // utils
@@ -23,6 +22,8 @@ class SleepTimeCard extends StatelessWidget {
         return AppColors.BACKGROUND_REGULAR_COLOR;
       case 5:
       case 6:
+        return AppColors.BACKGROUND_IDEAL_COLOR;
+      default:
         return AppColors.BACKGROUND_IDEAL_COLOR;
     }
   }
